@@ -1,4 +1,3 @@
-
 export default function Contact() {
   return (
     <main>
@@ -10,18 +9,21 @@ export default function Contact() {
           <p>This is a sentence.</p>
         </div>
       </div>
-        <form id="contact-form">
+      <form id="contact-form">
         <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" required/><br/>
+        <input type="text" id="name" name="name" required />
+        <br />
 
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" required/><br/>
+        <input type="email" id="email" name="email" required />
+        <br />
 
         <label htmlFor="message">Message:</label>
-        <textarea id="message" name="message" required></textarea><br/>
+        <textarea id="message" name="message" required></textarea>
+        <br />
 
-        <input type="submit" value="Submit"/>
-    </form>
+        <input type="submit" value="Submit" />
+      </form>
     </main>
   );
 }

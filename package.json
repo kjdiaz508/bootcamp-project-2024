@@ -1,5 +1,10 @@
 {
+  "scripts": {
+    "start": "npm run dev --prefix bootcamp-milestone-2",
+    "dev": "npm run dev --prefix bootcamp-milestone-2"
+  },
   "dependencies": {
-    "eslint": "^9.13.0"
+    "eslint": "^9.13.0",
+    "mongoose": "^8.8.3"
   }
 }
