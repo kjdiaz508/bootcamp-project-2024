@@ -1,33 +1,60 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
 import BlogPreview from "@/components/blogPreview";
-import connectDB from "@/database/db";
-import BlogModel, { BlogType } from "@/database/blogSchema";
+import { BlogType } from "@/database/blogSchema";
 import styles from "./page.module.css";
 
-async function getBlogs() {
-  await connectDB(); // function from db.ts before
-
+async function getBlogs(): Promise<BlogType[]> {
   try {
     // query for all blogs and sort by date
-    const blogs: BlogType[] = await BlogModel.find()
-      .sort({ date: -1 })
-      .orFail();
-    // send a response as the blogs as the message
-    return blogs;
+    const res = await fetch("/api/Blogs");
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await res.json();
+    return data;
   } catch (err) {
-    console.log(err);
+    console.error("Error fetching blogs:", err);
     return [];
   }
 }
 
-export default async function BlogListPage() {
-  const blogs: BlogType[] = await getBlogs();
+export default function BlogListPage() {
+  const [blogs, setBlogs] = useState<BlogType[]>([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadBlogs() {
+      try {
+        const data = await getBlogs();
+        setBlogs(data);
+      } catch (err) {
+        console.log(err);
+        setError("Failed to load blogs");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadBlogs();
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading blogs...</p>;
+  }
+
+  if (error) {
+    return <p style={{ color: "red" }}>{error}</p>;
+  }
 
   return (
     <main>
       <h1 className="page-title">Blog</h1>
       <div className={styles.container}>
         {blogs.map((blog, idx) => (
-          <BlogPreview // This is how we call the component
+          <BlogPreview
             key={idx}
             title={blog.title}
             slug={blog.slug}

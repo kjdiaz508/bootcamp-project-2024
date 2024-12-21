@@ -3,7 +3,7 @@ import connectDB from "@/database/db";
 import blogSchema from "@/database/blogSchema";
 
 type IParams = {
-  params: Promise<{ slug: string}>
+  params: Promise<{ slug: string }>;
 };
 
 // If { params } looks confusing, check the note below this code block
