@@ -19,7 +19,7 @@ export default function BlogPreview(props: BlogType) {
           ></Image>
         </Link>
         <p>{props.description}</p>
-        <p>{props.date.toDateString()}</p>
+        <p>{new Date(props.date).toDateString()}</p>
       </div>
     </div>
   );
