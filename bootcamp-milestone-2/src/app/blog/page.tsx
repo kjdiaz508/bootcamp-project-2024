@@ -36,6 +36,7 @@ export default async function BlogListPage() {
             content={blog.content}
             image={blog.image}
             image_alt={blog.image_alt}
+            comments={blog.comments}
           />
         ))}
       </div>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { BlogType } from "@/database/blogSchema";
 import styles from "./page.module.css";
 import Comment from "@/components/Comment";
+import CommentForm from "@/components/commentForm";
 type Props = {
   params: { slug: string };
 };
@@ -51,6 +52,7 @@ export default async function Blog({ params }: Props) {
         {blog.comments.map((comment, index) => (
           <Comment key={index} comment={comment} />
         ))}
+        <CommentForm slug={slug} />
       </div>
     </main>
   );

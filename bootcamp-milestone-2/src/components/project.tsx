@@ -1,8 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import Comment from "./Comment";
 import { ProjectType } from "@/database/projectSchema";
+import ProjectCommentForm from "./projectCommentForm";
 
 export default function Project(props: ProjectType) {
+  console.log(props.date);
   return (
     <div>
       <h3> {props.name} </h3>
@@ -14,8 +17,12 @@ export default function Project(props: ProjectType) {
           height={500}
         ></Image>
         <p>{props.description}</p>
-        <p>{props.date.toDateString()}</p>
+        <p>{new Date(props.date).toDateString()}</p>
       </div>
+      {props.comments.map((comment, index) => (
+        <Comment key={index} comment={comment} />
+      ))}
+      <ProjectCommentForm project={props.name} />
     </div>
   );
 }
