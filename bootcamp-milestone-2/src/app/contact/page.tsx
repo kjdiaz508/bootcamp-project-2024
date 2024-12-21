@@ -16,7 +16,7 @@ export default function Contact() {
     const email = (formRef.current["email"] as HTMLInputElement).value;
     const message = (formRef.current["message"] as HTMLTextAreaElement).value;
 
-    // Basic validation
+    // Basic validation.
     if (!name || !email || !message) {
       setStatusMessage("Please fill out all fields!");
       return;
