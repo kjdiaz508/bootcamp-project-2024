@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import Comment from "@/components/Comment";
 import CommentForm from "@/components/commentForm";
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>
 };
 
 export default async function Blog({ params }: Props) {

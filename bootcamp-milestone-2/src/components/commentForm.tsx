@@ -27,6 +27,7 @@ export default function CommentForm({ slug }: CommentFormProps) {
     const body = {
       user,
       date: new Date().toISOString(),
+      slug,
       comment,
     };
 
